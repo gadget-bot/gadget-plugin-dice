@@ -43,7 +43,7 @@ func rollD6() *router.MentionRoute {
 	return &pluginRoute
 }
 
-// This function is used to retrieve all Mention Routes from this plugin
+// GetMentionRoutes is used to retrieve all Mention Routes from this plugin
 func GetMentionRoutes() []router.MentionRoute {
 	return []router.MentionRoute{
 		*rollD6(),
