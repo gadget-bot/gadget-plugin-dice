@@ -12,18 +12,18 @@ In your `main.go` for using Gadget, your `main()` function should instruct you b
 package main
 
 import (
-  gadget "github.com/gadget-bot/gadget/core"
+	gadget "github.com/gadget-bot/gadget/core"
 	dice "github.com/gadget-bot/gadget-plugin-dice"
 )
 
 func main() {
-  // This is the Gadget bot
+	// This is the Gadget bot
 	myBot := gadget.Setup()
 
-  // Add your custom plugins here
+	// Add your custom plugins here
 	myBot.Router.AddMentionRoutes(dice.GetMentionRoutes())
 
-  // This launches your bot
+	// This launches your bot
 	myBot.Run()
 }
 ```
