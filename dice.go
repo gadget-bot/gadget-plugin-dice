@@ -22,12 +22,10 @@ func rollD6() *router.MentionRoute {
 		msgRef := slack.NewRefToMessage(ev.Channel, ev.TimeStamp)
 		api.AddReaction("game_die", msgRef)
 
-		// Roll a virtual dice
+		// Roll virtual dice
 		dice := []int{1, 2, 3, 4, 5, 6}
-		rollIndex1 := rand.Intn(len(dice))
-		rollIndex2 := rand.Intn(len(dice))
-		roll1 := dice[rollIndex1]
-		roll2 := dice[rollIndex2]
+		roll1 := rollDie(dice)
+		roll2 := rollDie(dice)
 
 		// Here's how we send a reply
 		api.PostMessage(
@@ -41,6 +39,11 @@ func rollD6() *router.MentionRoute {
 
 	// We've got to return the MentionRoute
 	return &pluginRoute
+}
+
+func rollDie(sides []int) int {
+	index := rand.Intn(len(sides))
+	return sides[index]
 }
 
 // GetMentionRoutes is used to retrieve all Mention Routes from this plugin
