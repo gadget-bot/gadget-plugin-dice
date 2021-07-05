@@ -1,4 +1,4 @@
-module github.com/gadget-bot/gadget-plugin-how
+module github.com/gadget-bot/gadget-plugin-dice
 
 go 1.16
 
