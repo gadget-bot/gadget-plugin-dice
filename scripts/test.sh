@@ -1,5 +1,9 @@
 #!/bin/sh
 
+#
+# This is used by RoxanneCI to perform tests on the repo
+#
+
 export GOBIN=$HOME/go/bin
 export PATH=$PATH:$GOBIN
 
