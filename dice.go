@@ -17,7 +17,7 @@ func rollD6() *router.MentionRoute {
 	pluginRoute.Description = "Rolls two d6 dice"
 	pluginRoute.Help = "roll some dice"
 	pluginRoute.Pattern = `(?i)^(roll some dice|dice me)[!.]?$`
-	pluginRoute.Plugin = func(api slack.Client, router router.Router, ev slackevents.AppMentionEvent, message string) {
+	pluginRoute.Plugin = func(router router.Router, route router.Route, api slack.Client, ev slackevents.AppMentionEvent, message string) {
 		// Here's how we can react to the message
 		msgRef := slack.NewRefToMessage(ev.Channel, ev.TimeStamp)
 		api.AddReaction("game_die", msgRef)
