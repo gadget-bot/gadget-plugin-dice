@@ -17,10 +17,10 @@ func rollD6() *router.MentionRoute {
 	pluginRoute.Description = "Rolls two d6 dice"
 	pluginRoute.Help = "roll some dice"
 	pluginRoute.Pattern = `(?i)^(roll some dice|dice me)[!.]?$`
-	pluginRoute.Plugin = func(router router.Router, route router.Route, api slack.Client, ev slackevents.AppMentionEvent, message string) {
+	pluginRoute.Plugin = func(ctx router.HandlerContext, ev slackevents.AppMentionEvent, message string) {
 		// Here's how we can react to the message
 		msgRef := slack.NewRefToMessage(ev.Channel, ev.TimeStamp)
-		_ = api.AddReaction("game_die", msgRef)
+		_ = ctx.BotClient.AddReaction("game_die", msgRef)
 
 		// Roll virtual dice
 		dice := []int{1, 2, 3, 4, 5, 6}
@@ -28,7 +28,7 @@ func rollD6() *router.MentionRoute {
 		roll2 := rollDie(dice)
 
 		// Here's how we send a reply
-		_, _, _ = api.PostMessage(
+		_, _, _ = ctx.BotClient.PostMessage(
 			ev.Channel,
 			slack.MsgOptionText(
 				fmt.Sprintf("<@%s> rolled a %d and a %d", ev.User, roll1, roll2),
